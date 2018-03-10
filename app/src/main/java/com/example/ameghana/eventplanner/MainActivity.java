@@ -1,6 +1,7 @@
 package com.example.ameghana.eventplanner;
 
 
+import android.content.Intent;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import it.neokree.materialtabs.MaterialTab;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 
 
 import android.support.design.widget.TabLayout;
+import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    //When login button is clicked
+    public void login(View view){
+        Intent intent = new Intent(this,NavigationDrawer.class);
+        startActivity(intent);
+    }
+
+    //When SignUp button is clicked
+    public void signup(View view){
+        Intent intent = new Intent(this,NavigationDrawer.class);
+        startActivity(intent);
     }
 }
 

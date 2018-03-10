@@ -107,7 +107,8 @@
         android:text="Sign up"
         android:layout_marginTop="23dp"
         android:layout_below="@+id/appCompatCheckBox"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="signup"/>
 
 
 </RelativeLayout>

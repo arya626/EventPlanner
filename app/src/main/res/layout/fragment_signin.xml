@@ -62,6 +62,7 @@
         android:layout_below="@+id/forgot_pass"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:onClick="login"
         />
 
     <TextView android:id="@+id/forgot_pass"
