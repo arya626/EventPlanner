@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Signup extends Fragment {
+public class Signup extends Fragment  {
 
 
     public Signup() {
@@ -26,4 +26,6 @@ public class Signup extends Fragment {
         return inflater.inflate(R.layout.fragment_signup, container, false);
     }
 
+
 }
+
