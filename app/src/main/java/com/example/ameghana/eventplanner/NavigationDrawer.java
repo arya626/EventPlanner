@@ -29,6 +29,28 @@ public class NavigationDrawer extends AppCompatActivity
         TextView tv = (TextView)findViewById(R.id.tvusername);
         tv.setText(username);
         //*
+
+        //title to be displayed
+        String title = getIntent().getStringExtra("title");
+        TextView vtitle = (TextView)findViewById(R.id.titleView);
+        vtitle.setText(title);
+
+        //chiefGuest to be displayed
+        String chiefguest = getIntent().getStringExtra("chiefguest");
+        TextView vguest = (TextView)findViewById(R.id.chiefGuestView);
+        vguest.setText(chiefguest);
+
+        //venue to be displayed
+        String venue = getIntent().getStringExtra("venue");
+        TextView vvenue = (TextView)findViewById(R.id.venueView);
+        vvenue.setText(venue);
+
+        //title to be displayed
+        String date = getIntent().getStringExtra("date");
+        TextView vdate = (TextView)findViewById(R.id.dateView);
+        vdate.setText(date);
+        //********************************************************************8
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,8 +58,11 @@ public class NavigationDrawer extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intent = new Intent(NavigationDrawer.this, AddEvent.class);
+                startActivity(intent);
+
             }
         });
 
@@ -115,4 +140,6 @@ public class NavigationDrawer extends AppCompatActivity
 //        startActivity(intent);
 //    }
     //String username = getIntent().getStringExtra("Username");
+
+
 }

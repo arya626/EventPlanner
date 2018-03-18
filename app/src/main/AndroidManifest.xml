@@ -28,8 +28,10 @@
         <activity
             android:name=".NavigationDrawer"
             android:label="EventPlanner"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddEvent"
+            android:label="Add Event"/>
     </application>
 
 </manifest>

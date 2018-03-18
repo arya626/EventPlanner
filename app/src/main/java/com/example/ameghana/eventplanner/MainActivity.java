@@ -2,23 +2,21 @@ package com.example.ameghana.eventplanner;
 
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
+
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import it.neokree.materialtabs.MaterialTab;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
 import android.support.v4.view.ViewPager;
 
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
+
+
 import android.support.v7.widget.Toolbar;
 
 
@@ -26,10 +24,13 @@ import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.widget.EditText;
 
+import android.widget.Toast;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
-
-
+    DatabaseHelper helper = new DatabaseHelper(this);
     TabLayout tabHost;
     ViewPager viewPager;
     ViewPagerAdapter androidAdapter;
@@ -72,25 +73,71 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     //When login button is clicked
-    public void login(View view){
-        EditText a = (EditText)findViewById(R.id.textInputEditTextEmail);
+    public void login(View view) {
+        EditText a = (EditText) findViewById(R.id.signInMail);
         String str = a.getText().toString();
-        Intent intent = new Intent(MainActivity.this,NavigationDrawer.class);
-        intent.putExtra("Username",str);
-        startActivity(intent);
+        EditText b = (EditText) findViewById(R.id.signInPass);
+        String pass = b.getText().toString();
+
+        String password = helper.searchPass(str);
+        if (pass.equals(password)) {
+            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
+            intent.putExtra("Username", str);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(this, "Username and password doesn't match", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     //When SignUp button is clicked
     public void signup(View view) {
-        Intent intent = new Intent(this, NavigationDrawer.class);
-        startActivity(intent);
+        EditText name = (EditText)findViewById(R.id.textInputEditTextName);
+        EditText email = (EditText)findViewById(R.id.textInputEditTextEmail);
+        EditText pass1 = (EditText)findViewById(R.id.textInputEditTextPassword);
+        EditText pass2 = (EditText)findViewById(R.id.textInputEditTextConfirmPassword);
+
+        String namestr = name.getText().toString();
+        String emailstr = email.getText().toString();
+        String passstr = pass1.getText().toString();
+        String conPassstr = pass2.getText().toString();
+
+        if(passstr.equals(conPassstr)){
+
+            //Insert details to database
+            Contact c = new Contact();
+            c.setUname(namestr);
+            c.setEmail(emailstr);
+            c.setPass(passstr);
+            helper.insertContact(c);
+            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
+            startActivity(intent);
+        }
+        else
+            {
+
+//            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
+//            startActivity(intent);
+            //popup message
+            Toast mes = Toast.makeText(this,"Passwords doesn't match", Toast.LENGTH_SHORT);
+            mes.show();
+
+
     }
+    }
+
+
+
+
 }
 
-// view pager adapter
+
+    // view pager adapter
 class ViewPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 
